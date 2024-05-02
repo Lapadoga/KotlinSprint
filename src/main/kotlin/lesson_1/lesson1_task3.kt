@@ -5,9 +5,12 @@ fun main() {
     var hour: Int = 9
     var minute: Int = 7
 
-    println("Год: $year")
-    println("Час: $hour")
-    println("Минута: $minute")
+    val hourString: String = String.format("%02d", hour)
+    val minuteString: String = String.format("%02d", minute)
+
+    println("$year")
+    println(hourString)
+    println(minuteString)
 
     hour = 10
     minute = 55
