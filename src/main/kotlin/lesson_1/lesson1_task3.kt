@@ -5,18 +5,21 @@ fun main() {
     var hour: Int = 9
     var minute: Int = 7
 
-    val hourString: String = String.format("%02d", hour)
-    val minuteString: String = String.format("%02d", minute)
+    var hourString: String = String.format("%02d", hour)
+    var minuteString: String = String.format("%02d", minute)
 
-    println("$year")
+    println(year)
     println(hourString)
     println(minuteString)
 
     hour = 10
     minute = 55
 
+    hourString = String.format("%02d", hour)
+    minuteString = String.format("%02d", minute)
+
     print("Время посадки: ")
-    print(hour)
+    print(hourString)
     print(':')
-    print(minute)
+    print(minuteString)
 }
