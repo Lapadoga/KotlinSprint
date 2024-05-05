@@ -1,13 +1,13 @@
 package org.example.lesson_2
 
 fun main() {
-    val amountOfStudents = 4f
-    val grade1 = 3f
-    val grade2 = 4f
-    val grade3 = 3f
-    val grade4 = 5f
+    val amountOfStudents: Byte = 4
+    val grade1: Byte = 3
+    val grade2: Byte = 4
+    val grade3: Byte = 3
+    val grade4: Byte = 5
 
-    val average = (grade1 + grade2 + grade3 + grade4) / amountOfStudents
+    val average = (grade1 + grade2 + grade3 + grade4).toFloat() / amountOfStudents
 
     println(String.format("%,.2f", average))
 }
