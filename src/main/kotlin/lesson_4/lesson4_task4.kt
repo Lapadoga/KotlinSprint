@@ -2,17 +2,16 @@ package org.example.lesson_4
 
 fun main() {
     val parity = 2
-    val dayOfTraining = 7
+    val dayOfTraining = 6
 
-    val conditionForUpperBody = dayOfTraining % parity == 1
-    val conditionForLowerBody = dayOfTraining % parity == 0
+    val isEven = dayOfTraining % parity == 0
 
     println(
         """
-        Упражнения для рук:    $conditionForUpperBody
-        Упражнения для ног:    $conditionForLowerBody
-        Упражнения для спины:  $conditionForLowerBody
-        Упражнения для пресса: $conditionForUpperBody
+        Упражнения для рук:    ${!isEven}
+        Упражнения для ног:    $isEven
+        Упражнения для спины:  $isEven
+        Упражнения для пресса: ${!isEven}
     """.trimIndent()
     )
 }
