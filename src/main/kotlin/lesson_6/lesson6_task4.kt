@@ -1,13 +1,12 @@
 package org.example.lesson_6
 
-import kotlin.random.Random
-
 const val AMOUNT_OF_TRIES = 5
 const val NUMBER_FROM = 1
 const val NUMBER_UNTIL = 9
 
 fun main() {
-    val hiddenNumber = Random.nextInt(NUMBER_FROM, NUMBER_UNTIL)
+    val randomRange = NUMBER_FROM..NUMBER_UNTIL
+    val hiddenNumber = randomRange.random()
     var currentTry = 1
     var isGuessed = false
     var userNumber: Int
