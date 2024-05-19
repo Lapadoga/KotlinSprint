@@ -1,13 +1,13 @@
 package org.example.lesson_8
 
-fun main(){
+fun main() {
     val ingredientArray = arrayOf("Молоко", "мука", "Яйца")
 
     println("Введите искомый ингредиент")
     val ingredientSearch = readln()
 
-    for (i in ingredientArray){
-        if (i.lowercase() == ingredientSearch.lowercase()){
+    for (i in ingredientArray) {
+        if (i.lowercase() == ingredientSearch.lowercase()) {
             println("Ингредиент $ingredientSearch в рецепте есть")
             return
         }
