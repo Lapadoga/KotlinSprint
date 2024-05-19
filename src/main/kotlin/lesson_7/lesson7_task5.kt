@@ -3,11 +3,11 @@ package org.example.lesson_7
 const val MIN_PASSWORD_LENGTH = 6
 
 fun main() {
-    val numberRange = 0..9
+    val numberRange = '1'..'9'
     val charRange = 'a'..'z'
     val capitalCharRange = 'A'..'Z'
-    val indexRange = 1..3
-    var password = ""
+    val randomRange = numberRange + charRange + capitalCharRange
+    val password = mutableListOf<Char>()
 
     println("Введите длину пароля, она должна быть больше ${MIN_PASSWORD_LENGTH - 1}")
     var passwordLength = readln().toInt()
@@ -16,13 +16,16 @@ fun main() {
         passwordLength = readln().toInt()
     }
 
-    for (i in 0 until passwordLength) {
-        val randomIndex = indexRange.random()
-        password += when (randomIndex) {
-            1 -> numberRange.random()
-            2 -> charRange.random()
-            else -> capitalCharRange.random()
-        }
+    password.add(numberRange.random())
+    password.add(charRange.random())
+    password.add(capitalCharRange.random())
+
+    val indexStart = 3
+    for (i in indexStart until passwordLength) {
+        password.add(randomRange.random())
     }
-    println(password)
+    password.shuffle()
+
+    for (i in password.indices)
+        print(password[i])
 }
