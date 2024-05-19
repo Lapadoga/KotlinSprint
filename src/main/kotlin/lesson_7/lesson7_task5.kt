@@ -26,6 +26,6 @@ fun main() {
     }
     password.shuffle()
 
-    for (i in password.indices)
-        print(password[i])
+    for (i in password)
+        print(i)
 }
