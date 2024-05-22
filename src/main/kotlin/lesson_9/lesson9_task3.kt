@@ -5,8 +5,8 @@ fun main() {
 
     println("Введите количество порций")
     val amountOfServings = readln().toInt()
-    amountOfIngredientsList.replaceAll {
-        it * amountOfServings
+    amountOfIngredientsList.forEachIndexed { index, _ ->
+        amountOfIngredientsList[index] *= amountOfServings
     }
 
     val servingString = if (amountOfServings == 1) "порции" else "порций"
