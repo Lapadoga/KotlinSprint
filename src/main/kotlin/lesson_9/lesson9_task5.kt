@@ -4,18 +4,12 @@ const val AMOUNT_OF_INGREDIENTS = 5
 
 fun main() {
     val range = 0 until AMOUNT_OF_INGREDIENTS
-    val setOfIngredients = mutableSetOf<String>()
+    val setOfIngredients = sortedSetOf<String>()
 
     println("Введите пять ингредиентов")
     for (i in range)
         setOfIngredients.add(readln())
 
-    val sortedIngredientsList = setOfIngredients.sorted()
-    val ingredientsString = sortedIngredientsList.joinToString(", ")
-    ingredientsString.forEachIndexed { index, c ->
-        if (index == 0)
-            print(c.uppercaseChar())
-        else
-            print(c)
-    }
+    val ingredientsString = setOfIngredients.joinToString(", ")
+    println(ingredientsString.replaceFirst(ingredientsString[0], ingredientsString[0].uppercaseChar()))
 }
