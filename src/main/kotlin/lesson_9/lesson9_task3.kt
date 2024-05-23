@@ -5,12 +5,12 @@ fun main() {
 
     println("Введите количество порций")
     val amountOfServings = readln().toInt()
-    amountOfIngredientsList.forEachIndexed { index, _ ->
-        amountOfIngredientsList[index] *= amountOfServings
+    val servingsList = amountOfIngredientsList.map {
+        it * amountOfServings
     }
 
     val servingString = if (amountOfServings == 1) "порции" else "порций"
-    val ingredientsString = "Яиц - ${amountOfIngredientsList[0]}, молока - ${amountOfIngredientsList[1]}, " +
-            "сливочного масла - ${amountOfIngredientsList[2]}"
+    val ingredientsString = "Яиц - ${servingsList[0]}, молока - ${servingsList[1]}, " +
+            "сливочного масла - ${servingsList[2]}"
     println("Для $amountOfServings $servingString вам понадобится: $ingredientsString")
 }
