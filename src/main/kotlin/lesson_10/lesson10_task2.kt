@@ -11,6 +11,8 @@ fun main() {
 
     if (!isValidData(login) || !isValidData(password))
         println("Логин или пароль недостаточно длинные")
+    else
+        println("Данные прошли проверку")
 }
 
-fun isValidData(data: String) = data.length == MIN_LENGTH
+fun isValidData(data: String) = data.length >= MIN_LENGTH
