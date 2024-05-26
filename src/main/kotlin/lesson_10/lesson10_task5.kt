@@ -5,23 +5,23 @@ const val USER_PASSWORD = "password"
 const val TOKEN_LENGTH = 32
 
 fun main() {
-    println("Введите логин")
-    val login = readln()
-    println("Введите пароль")
-    val password = readln()
+    val login = getDataFromUser("Введите логин")
+    val password = getDataFromUser("Введите пароль")
 
-    val userToken = userAuth(login, password)
-    if (userToken == null)
+    val isAuthorized = userAuth(login, password)
+    val generatedToken = generateToken(isAuthorized)
+    if (generatedToken == null)
         println("Ошибка авторизации")
     else {
-        println(userToken)
-        val shoppingCart = getShoppingCart(userToken)
+        val shoppingCart = getShoppingCart(generatedToken)
         println("Содержимое вашей корзины: ${shoppingCart.joinToString(", ")}")
     }
 }
 
-fun userAuth(login: String, password: String): String? {
-    if (login != USER_LOGIN || password != USER_PASSWORD)
+fun userAuth(login: String, password: String): Boolean = login == USER_LOGIN && password == USER_PASSWORD
+
+fun generateToken(isAuthorized: Boolean): String? {
+    if (!isAuthorized)
         return null
 
     val numberRange = '1'..'9'
@@ -38,3 +38,9 @@ fun userAuth(login: String, password: String): String? {
 }
 
 fun getShoppingCart(token: String?): MutableList<String> = mutableListOf("Кресло", "Диван")
+
+fun getDataFromUser(message: String): String {
+    println(message)
+
+    return readln()
+}
