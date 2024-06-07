@@ -3,99 +3,57 @@ package org.example.lesson_11
 fun main() {
     val forum = Forum()
 
-    forum.createNewUser("Alex")
-    forum.createNewMessage(forum.getUserId("Alex"))
+    val userJack = forum.createNewUser("Jack")
+    val userMike = forum.createNewUser("Mike")
 
-    forum.createNewUser("Tom")
-    forum.createNewMessage(forum.getUserId("Tom"))
+    forum.createNewMessage(userJack.userId)
+    forum.createNewMessage(userMike.userId)
+    forum.createNewMessage(userJack.userId)
+    forum.createNewMessage(userMike.userId)
 
     forum.printThread()
 }
 
+class ForumUser(
+    val userId: Int,
+    val userName: String,
+)
+
+class ForumMessage(
+    val authorId: Int,
+    val message: String,
+)
+
 class Forum(
-    private val userList: ForumUserList = ForumUserList(),
-    private val messageList: MutableList<ForumMessage> = mutableListOf(),
+    val userMap: MutableMap<Int, ForumUser> = mutableMapOf(),
+    val messageList: MutableList<ForumMessage> = mutableListOf(),
 ) {
-    fun createNewUser(userName: String) {
-        userList.add(ForumUser.newUser(userList.getSize(), userName))
+    fun createNewUser(userName: String): ForumUser {
+        val userId = userMap.size
+        val newUser = ForumUser(userId, userName)
+        userMap[userId] = newUser
+
+        return newUser
     }
 
-    fun createNewMessage(userId: Int?) {
-        if (userId == null)
-            return
-
-        if (userList.contains(userId)) {
+    fun createNewMessage(userId: Int): ForumMessage? {
+        if (userMap[userId] != null) {
             println("Введите сообщение")
             val message = readln()
-            messageList.add(ForumMessage.newMessage(userId, message))
+
+            val newMessage = ForumMessage(userId, message)
+            messageList.add(newMessage)
+
+            return newMessage
+        } else {
+            println("Данного пользователя не существует")
+            return null
         }
     }
-
-    fun getUserId(name: String) = userList.getUserByName(name)?.getId()
 
     fun printThread() {
         messageList.forEach {
-            val author = userList.getUserById(it.getAuthorId())
-            if (author != null)
-                println("${author.getUserName()}: ${it.getMessage()}")
+            println("${userMap[it.authorId]?.userName}: ${it.message}")
         }
     }
-}
-
-class ForumUser private constructor(
-    private val userId: Int,
-    private val userName: String,
-) {
-    companion object {
-        fun newUser(id: Int, name: String) = ForumUser(id, name)
-    }
-
-    fun getId() = userId
-    fun getUserName() = userName
-}
-
-class ForumUserList(
-    private val userList: MutableList<ForumUser> = mutableListOf(),
-) {
-    fun contains(id: Int): Boolean {
-        userList.forEach {
-            if (it.getId() == id)
-                return true
-        }
-        return false
-    }
-
-    fun add(user: ForumUser) {
-        userList.add(user)
-    }
-
-    fun getUserById(id: Int): ForumUser? {
-        userList.forEach {
-            if (it.getId() == id)
-                return it
-        }
-        return null
-    }
-
-    fun getUserByName(name: String): ForumUser? {
-        userList.forEach {
-            if (it.getUserName() == name)
-                return it
-        }
-        return null
-    }
-
-    fun getSize() = userList.size
-}
-
-class ForumMessage private constructor(
-    private val authorId: Int,
-    private val message: String,
-) {
-    companion object {
-        fun newMessage(userId: Int, messageText: String) = ForumMessage(userId, messageText)
-    }
-
-    fun getAuthorId() = authorId
-    fun getMessage() = message
 }
