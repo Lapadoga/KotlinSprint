@@ -6,10 +6,7 @@ fun main() {
     day.print()
 }
 
-class DayWeather1(_dayTemperature: Int, _nightTemperature: Int, _wasPrecipitation: Boolean) {
-    var dayTemperature = _dayTemperature
-    var nightTemperature = _nightTemperature
-    var wasPrecipitation = _wasPrecipitation
+class DayWeather1(var dayTemperature: Int, var nightTemperature: Int, var wasPrecipitation: Boolean) {
 
     fun print() {
         println("Дневная температура: $dayTemperature, ночная температура: $nightTemperature, были осадки: $wasPrecipitation")
