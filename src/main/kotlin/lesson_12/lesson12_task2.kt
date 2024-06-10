@@ -7,8 +7,8 @@ fun main() {
 }
 
 class DayWeather1(var dayTemperature: Int, var nightTemperature: Int, var wasPrecipitation: Boolean) {
-
     fun print() {
-        println("Дневная температура: $dayTemperature, ночная температура: $nightTemperature, были осадки: $wasPrecipitation")
+        val rainyLiteral = if (wasPrecipitation) "Да" else "Нет"
+        println("Дневная температура: $dayTemperature, ночная температура: $nightTemperature, были осадки: $rainyLiteral")
     }
 }
