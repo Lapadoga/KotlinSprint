@@ -16,6 +16,7 @@ class DayWeather2(_dayTemperature: Int, _nightTemperature: Int, _wasPrecipitatio
     var wasPrecipitation = _wasPrecipitation
 
     fun print() {
-        println("Дневная температура: $dayTemperature, ночная температура: $nightTemperature, были осадки: $wasPrecipitation")
+        val rainyLiteral = if (wasPrecipitation) "Да" else "Нет"
+        println("Дневная температура: $dayTemperature, ночная температура: $nightTemperature, были осадки: $rainyLiteral")
     }
 }
