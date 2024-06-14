@@ -6,12 +6,17 @@ fun main() {
         UserCredits2("Jack", 345, null),
         UserCredits2("Mike", 678, "null"),
         UserCredits2("Алексей", 10234, "Яндекс"),
-        UserCredits2("Артем", 432231, "Google")
+        UserCredits2("Артем", 432231, "Яндекс")
     )
 
+    val companySet = mutableSetOf<String>()
     userList.forEach {
         if (it.company != null)
-            println(it.company)
+            companySet.add(it.company)
+    }
+
+    companySet.forEach {
+        println(it)
     }
 }
 
