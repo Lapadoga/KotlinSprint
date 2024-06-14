@@ -15,8 +15,8 @@ fun main() {
 
         val user = UserCredits4(name, number, company)
         user.print()
-    } catch (e: Exception) {
-        println(e)
+    } catch (e: NumberFormatException) {
+        println(e::class.simpleName)
     }
 }
 
