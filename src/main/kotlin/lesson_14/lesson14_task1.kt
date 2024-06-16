@@ -8,6 +8,7 @@ fun main() {
     println(linerShip)
     println(cargoShip)
     println(icebreaker)
+    icebreaker.crashIce()
 }
 
 open class Liner(
@@ -24,10 +25,9 @@ class Icebreaker(
     speed: Int = 30,
     carrying: Int = 80,
     amountOfPassengers: Int = 0,
-    val canCrashIce: Boolean = true,
 ) : Liner(speed, carrying, amountOfPassengers) {
-    override fun toString(): String {
-        return super.toString() + ", может колоть лёд: ${if (canCrashIce) "Да" else "Нет"}"
+    fun crashIce() {
+        println("Колет лёд")
     }
 }
 
