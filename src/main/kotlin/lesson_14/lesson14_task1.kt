@@ -23,7 +23,7 @@ open class Liner(
 
 class Icebreaker(
     speed: Int = 30,
-    carrying: Int = 80,
+    carrying: Int = 40,
     amountOfPassengers: Int = 0,
 ) : Liner(speed, carrying, amountOfPassengers) {
     fun crashIce() {
