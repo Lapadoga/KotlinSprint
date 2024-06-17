@@ -8,7 +8,7 @@ fun main() {
     planet.print()
 }
 
-abstract class CelestialBodies(
+abstract class CelestialBody(
     val name: String,
     val hasAtmosphere: Boolean,
     val isSuitableForLanding: Boolean,
@@ -18,7 +18,7 @@ class Satellite(
     name: String,
     hasAtmosphere: Boolean,
     isSuitableForLanding: Boolean,
-) : CelestialBodies(name, hasAtmosphere, isSuitableForLanding) {
+) : CelestialBody(name, hasAtmosphere, isSuitableForLanding) {
     override fun toString(): String {
         return name
     }
@@ -29,7 +29,7 @@ class Planet(
     hasAtmosphere: Boolean,
     isSuitableForLanding: Boolean,
     val satelliteSet: MutableSet<Satellite> = mutableSetOf(),
-) : CelestialBodies(name, hasAtmosphere, isSuitableForLanding) {
+) : CelestialBody(name, hasAtmosphere, isSuitableForLanding) {
     fun print() {
         println("Название планеты: $name, список спутников: ${satelliteSet.joinToString(", ")}")
     }
