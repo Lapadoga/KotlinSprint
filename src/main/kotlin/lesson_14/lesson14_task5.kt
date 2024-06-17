@@ -1,7 +1,16 @@
 package org.example.lesson_14
 
 fun main() {
+    val chat = Chat()
+    var id = chat.addMessage("Hello", "Alex")
+    chat.addThreadMessage("Hi", "Bob", id)
+    id = chat.addMessage("How are you?", "Mike")
+    id = chat.addThreadMessage("Fine, thanks, and you?", "Bob", id)
+    chat.addThreadMessage("Fine!", "Mike", id)
+    chat.addThreadMessage("Nice!", "Alex", id)
+    chat.addMessage("Hello world", "Jack")
 
+    chat.printChat()
 }
 
 open class Message(
@@ -27,12 +36,31 @@ class Chat(
         return messageId
     }
 
-    fun addThreadMessage(text: String, author: String, parentMessageId: Int) {
+    fun addThreadMessage(text: String, author: String, parentMessageId: Int): Int {
+        val messageId = messageList.size
         if (messageList.find { it.id == parentMessageId } != null)
-            messageList.add(ChildMessage(messageList.size, author, text, parentMessageId))
+            messageList.add(ChildMessage(messageId, author, text, parentMessageId))
+
+        return messageId
     }
 
     fun printChat() {
-        messageList.groupBy { }
+        val childMessageByParentId = messageList.filterIsInstance<ChildMessage>().groupBy { it.parentMessageId }
+        messageList.forEach {
+            if (it.javaClass == Message::class.java) {
+                println("${it.author}: ${it.text}")
+                printThread(it, childMessageByParentId, "   ")
+            }
+        }
+    }
+
+    private fun printThread(message: Message, threadMap: Map<Int, List<ChildMessage>>, tabString: String) {
+        if (threadMap[message.id] != null) {
+            threadMap[message.id]!!.forEach {
+                println("$tabString${it.author}: ${it.text}")
+                printThread(it, threadMap, "$tabString  ")
+            }
+        } else
+            return
     }
 }
