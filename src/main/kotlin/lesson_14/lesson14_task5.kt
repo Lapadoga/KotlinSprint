@@ -49,7 +49,7 @@ class Chat(
         messageList.forEach {
             if (it.javaClass == Message::class.java) {
                 println("${it.author}: ${it.text}")
-                printThread(it, childMessageByParentId, "   ")
+                printThread(it, childMessageByParentId, "\t")
             }
         }
     }
@@ -58,7 +58,7 @@ class Chat(
         if (threadMap[message.id] != null) {
             threadMap[message.id]!!.forEach {
                 println("$tabString${it.author}: ${it.text}")
-                printThread(it, threadMap, "$tabString  ")
+                printThread(it, threadMap, "$tabString\t")
             }
         } else
             return
