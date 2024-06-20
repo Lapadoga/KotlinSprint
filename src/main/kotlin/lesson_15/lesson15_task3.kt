@@ -14,29 +14,18 @@ fun main() {
 }
 
 abstract class User(val name: String, val id: Int) {
-    abstract fun sendMessage()
-    abstract fun readChat()
-}
-
-class ForumUser(name: String, id: Int) : User(name, id) {
-    override fun sendMessage() {
+    fun sendMessage() {
         println("Пользователь $name отправил сообщение")
     }
 
-    override fun readChat() {
+    fun readChat() {
         println("Пользователь $name читает чат")
     }
 }
 
+class ForumUser(name: String, id: Int) : User(name, id)
+
 class ForumAdministrator(name: String, id: Int) : User(name, id) {
-    override fun sendMessage() {
-        println("Администратор $name отправил сообщение")
-    }
-
-    override fun readChat() {
-        println("Администратор $name читает чат")
-    }
-
     fun deleteMessage(id: Int) {
         println("Сообщение $id удалено")
     }
@@ -44,5 +33,4 @@ class ForumAdministrator(name: String, id: Int) : User(name, id) {
     fun deleteUser(id: Int) {
         println("Пользователь $id удален")
     }
-
 }
