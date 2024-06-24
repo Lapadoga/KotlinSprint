@@ -8,7 +8,7 @@ fun main() {
     passengerVehicle2.boardPassengers(2)
 
     val cargoVehicle = CargoVehicle("Kamaz")
-    cargoVehicle.boardPassengers(1)
+    cargoVehicle.boardPassengers(-1)
     cargoVehicle.loadCargo(2000)
 
     passengerVehicle1.moveToDestination()
@@ -43,6 +43,14 @@ abstract class Vehicle(val name: String) : Movable, Passenger {
     override var amountOfPassengers = 0
 
     override fun boardPassengers(amount: Int) {
+        if (amount < 0) {
+            println("""
+                $name. Введено неверное значение количества пассажиров, погрузка не будет произведена
+                $name. Текущее количество пассажиров: $amountOfPassengers
+            """.trimIndent())
+            return
+        }
+
         if (amountOfPassengers + amount <= maxPassengers) {
             amountOfPassengers += amount
             println("$name. Текущее количество пассажиров: $amountOfPassengers")
@@ -66,6 +74,14 @@ class CargoVehicle(name: String) : Vehicle(name), Cargo {
     override var amountOfCargo = 0
 
     override fun loadCargo(amount: Int) {
+        if (amount < 0) {
+            println("""
+                $name. Введено неверное значение количества груза, погрузка не будет произведена
+                $name. Текущее количество груза: $amountOfCargo
+            """.trimIndent())
+            return
+        }
+
         if (amountOfCargo + amount <= maxCargo) {
             amountOfCargo += amount
             println("$name. Текущее количество груза: $amountOfCargo")
