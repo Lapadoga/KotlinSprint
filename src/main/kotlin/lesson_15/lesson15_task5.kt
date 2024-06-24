@@ -44,10 +44,12 @@ abstract class Vehicle(val name: String) : Movable, Passenger {
 
     override fun boardPassengers(amount: Int) {
         if (amount < 0) {
-            println("""
+            println(
+                """
                 $name. Введено неверное значение количества пассажиров, погрузка не будет произведена
                 $name. Текущее количество пассажиров: $amountOfPassengers
-            """.trimIndent())
+            """.trimIndent()
+            )
             return
         }
 
@@ -75,10 +77,12 @@ class CargoVehicle(name: String) : Vehicle(name), Cargo {
 
     override fun loadCargo(amount: Int) {
         if (amount < 0) {
-            println("""
+            println(
+                """
                 $name. Введено неверное значение количества груза, погрузка не будет произведена
                 $name. Текущее количество груза: $amountOfCargo
-            """.trimIndent())
+            """.trimIndent()
+            )
             return
         }
 
