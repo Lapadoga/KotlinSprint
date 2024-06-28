@@ -1,7 +1,7 @@
 package org.example.lesson_16
 
 fun main() {
-    val user = User()
+    val user = User("Login", "Password")
 
     println("Введите пароль")
     val password = readln()
@@ -12,9 +12,9 @@ fun main() {
         println("Неверный пароль")
 }
 
-class User {
-    private val login = "Test"
-    private val password = "Pass"
-
+class User(
+    private val login: String,
+    private val password: String,
+) {
     fun isValidPassword(checkString: String) = checkString == password
 }
