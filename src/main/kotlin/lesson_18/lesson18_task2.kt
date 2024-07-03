@@ -1,11 +1,11 @@
 package org.example.lesson_18
 
 fun main() {
-    val dice4 = Dice4()
-    val dice6 = Dice6()
-    val dice8 = Dice8()
+    val dice4: Dice = Dice4()
+    val dice8: Dice = Dice8()
+    val dice6: Dice = Dice6()
 
-    val listOfDices = listOf<Dice>(dice4, dice6, dice8)
+    val listOfDices = listOf(dice4, dice6, dice8)
     listOfDices.forEach {
         println(it.rollDice())
     }
