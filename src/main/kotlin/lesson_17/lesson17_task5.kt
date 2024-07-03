@@ -24,8 +24,5 @@ class User(userLogin: String, userPassword: String) {
         set(value) {
             println("Вы не можете изменить пароль")
         }
-        get() {
-            val charArray = CharArray(field.length) { '*' }
-            return charArray.joinToString("")
-        }
+        get() = "*".repeat(field.length)
 }
