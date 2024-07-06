@@ -10,39 +10,40 @@ fun main() {
     )
 
     val card = CardIndex()
-    for (i in 0..4) {
+    var counter = 1
+    while (counter <= 5) {
         val enteredString = readln()
         val values = enteredString.split(" ")
+        if (values.size != 2) {
+            println("Неверный формат ввода, повторите попытку")
+            continue
+        }
+
         val name = values[0]
         val genderLit = values[1]
         card.addUser(name, genderLit)
+        counter++
     }
     println(card)
 }
 
 enum class Gender(val literal: String) {
-    MALE("М") {
-        override fun getDescription(): String {
-            return "Мужской"
-        }
-    },
-    FEMALE("Ж") {
-        override fun getDescription(): String {
-            return "Женский"
-        }
-    },
-    UNDEFINED("0") {
-        override fun getDescription(): String {
-            return "Неопределено"
-        }
-    };
+    MALE("М"),
+    FEMALE("Ж"),
+    UNDEFINED("0");
 
-    abstract fun getDescription(): String
+    override fun toString(): String {
+        return when (name) {
+            "MALE" -> "Мужской"
+            "FEMALE" -> "Женский"
+            else -> "Неопределено"
+        }
+    }
 }
 
 class User(private val name: String, private val gender: Gender) {
     override fun toString(): String {
-        return "Имя: $name, пол: ${gender.getDescription()}"
+        return "Имя: $name, пол: $gender"
     }
 }
 
