@@ -11,23 +11,17 @@ fun main() {
 }
 
 enum class ProductCategory {
-    CLOTHES {
-        override fun getName(): String {
-            return "Одежда"
-        }
-    },
-    STATIONERY {
-        override fun getName(): String {
-            return "Канцелярские товары"
-        }
-    },
-    OTHERS {
-        override fun getName(): String {
-            return "Разное"
-        }
-    };
+    CLOTHES,
+    STATIONERY,
+    OTHERS;
 
-    abstract fun getName(): String
+    fun getName(): String {
+        return when (name) {
+            "STATIONERY" -> "Канцелярские товары"
+            "CLOTHES" -> "Одежда"
+            else -> "Разное"
+        }
+    }
 }
 
 class Product(val name: String, val id: String, val category: ProductCategory) {
