@@ -7,13 +7,7 @@ fun main() {
 }
 
 fun String.vowelCount(): Int {
-    val englishVowels = listOf('a', 'e', 'i', 'o', 'u', 'y')
-    val russianVowels = listOf('а', 'у', 'о', 'и', 'э', 'ы', 'я', 'ю', 'е', 'ё')
+    val vowels = listOf('a', 'e', 'i', 'o', 'u', 'y', 'а', 'у', 'о', 'и', 'э', 'ы', 'я', 'ю', 'е', 'ё')
 
-    var counter = 0
-    forEachIndexed { _, c ->
-        if (englishVowels.contains(c.lowercaseChar()) || russianVowels.contains(c.lowercaseChar()))
-            counter++
-    }
-    return counter
+    return count { it.lowercaseChar() in vowels }
 }
