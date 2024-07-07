@@ -11,7 +11,7 @@ fun String.vowelCount(): Int {
     val russianVowels = listOf('а', 'у', 'о', 'и', 'э', 'ы', 'я', 'ю', 'е', 'ё')
 
     var counter = 0
-    this.forEachIndexed { _, c ->
+    forEachIndexed { _, c ->
         if (englishVowels.contains(c.lowercaseChar()) || russianVowels.contains(c.lowercaseChar()))
             counter++
     }
