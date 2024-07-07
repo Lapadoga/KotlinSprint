@@ -7,7 +7,7 @@ fun main() {
 
 fun List<Int>.evenNumbersSum(): Long {
     var counter = 0L
-    this.forEach {
+    forEach {
         if (it % 2 == 0)
             counter += it
     }
