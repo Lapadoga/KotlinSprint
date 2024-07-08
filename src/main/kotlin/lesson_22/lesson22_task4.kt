@@ -1,14 +1,12 @@
 package org.example.lesson_22
 
-fun main() {
-    val state1 = MainScreenState()
-    println(state1)
+class MainScreenViewModel {
+    private var state: MainScreenState = MainScreenState()
 
-    val state2 = state1.copy(isLoading = true)
-    println(state2)
-
-    val state3 = state1.copy(data = "data")
-    println(state3)
+    fun loadData() {
+        state = state.copy(isLoading = true)
+        state = state.copy(data = "data")
+    }
 }
 
-data class MainScreenState(val data: String = "", val isLoading: Boolean = false)
+data class MainScreenState(private val data: String = "", private val isLoading: Boolean = false)
